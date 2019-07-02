@@ -41,7 +41,7 @@ class Course
             else if(grade == "E")
                 this.points=1 ;
             else
-                this.grade="F";   
+                this.points==0;   
     }
 
 
@@ -158,7 +158,29 @@ function createElement(el,content="")
 //  -let course code contain only letters and numbers
 
 addCourseBtn.addEventListener('click',addCourse);
-
+function validateForm() {
+    var title = document.getElementsByName('title').value;
+    var code = document.getElementsByName('code').value;
+    var score = document.getElementsByName('score').value;
+    var unit = document.getElementsByName('unit').value;
+    if (title !== /^[A-Za-z]+$/) {
+        alert('Course Title can\'t be alphanumeric');
+        return false;
+    } else if (title === '') {
+        alert('You didn\'t fill in Course Title');
+    } else if (code !== /^[A-Za-z0-9]+$/ ) {
+        alert('Course Code isn\'t alphanumeric ');
+    } else if (code === '') {
+        alert('You didn\'t fill in Course Code');
+    } else if (score>100 && score<0) {
+        alert('Score can\'t be greater than 100 or less than 0 ');
+    } else if (unit>6 && unit<0) {
+        alert('unit can\'t be less than 0 or greater than 6');
+    }
+}
+document.getElementById('addcourse').addEventListener('click',function() {
+    validateForm()
+});
 function calculateGP()
 {
 
